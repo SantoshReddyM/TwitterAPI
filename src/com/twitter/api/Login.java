@@ -57,31 +57,30 @@ public class Login extends HttpServlet {
 		String oAuthHeader = oAuthProcessor.getOauthHeader("https://api.twitter.com/oauth/request_token", "POST");
 		
 		HttpsURLConnection  connection = (HttpsURLConnection)new URL("https://api.twitter.com/oauth/request_token").openConnection();
-	    connection.setDoOutput(true);	
-	    connection.setDoInput(true);	
-	    connection.setRequestMethod("POST");    
-	    connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+	        connection.setDoOutput(true);	
+	        connection.setDoInput(true);	
+	        connection.setRequestMethod("POST");    
+	        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 		connection.setRequestProperty("Authorization:", oAuthHeader);
 
 		
 		
 		try{
-		    OutputStreamWriter wr = new OutputStreamWriter (
-                connection.getOutputStream ());
+		       OutputStreamWriter wr = new OutputStreamWriter (connection.getOutputStream ());
 			//wr.write(oAuthHeader);
 			wr.flush ();
 			wr.close ();
 						
 		
-		InputStream is = connection.getInputStream();
+			InputStream is = connection.getInputStream();
 		
-		BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-	      String line;
-	      while((line = rd.readLine()) != null) {
-	        System.out.println(line);
-	      }
+			BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+	      		String line;
+			 while((line = rd.readLine()) != null) {
+			    System.out.println(line);
+	      		 }
 	      
-	      rd.close();
+	      		rd.close();
 	      
 		}
 		catch(Exception ex)
